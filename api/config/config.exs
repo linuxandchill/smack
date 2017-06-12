@@ -7,20 +7,26 @@ use Mix.Config
 
 # General application configuration
 config :smack,
-  ecto_repos: [Smack.Repo]
+ecto_repos: [Smack.Repo]
 
 # Configures the endpoint
 config :smack, Smack.Endpoint,
-  url: [host: "localhost"],
-  secret_key_base: "ZMPd5+t2mmWDToOfswAjegt/cozS2cq9wjcpEiM4FwOf8mndgxsZtEMAejjRjXhY",
-  render_errors: [view: Smack.ErrorView, accepts: ~w(json)],
-  pubsub: [name: Smack.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+url: [host: "localhost"],
+secret_key_base: "ZMPd5+t2mmWDToOfswAjegt/cozS2cq9wjcpEiM4FwOf8mndgxsZtEMAejjRjXhY",
+render_errors: [view: Smack.ErrorView, accepts: ~w(json)],
+pubsub: [name: Smack.PubSub,
+         adapter: Phoenix.PubSub.PG2]
 
-# Configures Elixir's Logger
-config :logger, :console,
-  format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
+         # Configures Elixir's Logger
+         config :logger, :console,
+         format: "$time $metadata[$level] $message\n",
+         metadata: [:request_id]
+
+config :guardian, Guardian,
+issuer: "Smack",
+ttl: {30, :days},
+verify_issuer: true,
+serializer: Smack.GuardianSerializer
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
