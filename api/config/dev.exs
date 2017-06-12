@@ -29,3 +29,6 @@ config :smack, Smack.Repo,
   database: "smack_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :guardian, Guardian,
+secret_key: "ZFYDLZSg+uK8n78Xg7AyxgDsVasiVXwmU9WIA/WSVFUA7V+7VojRxCKNWaZi8+5K"
